@@ -18,11 +18,11 @@ const Start = () => {
           <h1 className={style.title1}>ЗНАНИЕ</h1>
           <h1 className={style.title2}>СИЛА</h1>
         </div>
-        <div className={style.specification}>
+        {/* <div className={style.specification}>
           Преодолейте путь до самой вершины и одержите победу в невероятно увлекательной викторине.
           Отвечайте на многообразные вопросы по разным темам, в то время как испытания на реакцию
           будут постоянно держать в напряжении. От игрока потребуется скорость и точность.
-        </div>
+        </div> */}
         <ButtonStart btnText="НАЧАТЬ" handleClick={handleGameStart} />
       </div>
     </div>

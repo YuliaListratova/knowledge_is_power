@@ -3,7 +3,8 @@ import Question from './component/Question';
 import style from './Game.module.scss';
 
 const Game = () => {
-  const randomQuestion = 'Вопрос?'; /* () => {} */
+  const randomQuestion =
+    'Здесь нужно написать свой вопрос. Здесь нужно написать свой вопрос.'; /* () => {} */
 
   return (
     <div className={style.content}>
