@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../Button/import';
 import Game from '../Game';
+import ButtonStart from './component/ButtonStart';
 import style from './Start.module.scss';
 
 const Start = () => {
@@ -11,10 +12,19 @@ const Start = () => {
   };
 
   return !isStartGame ? (
-    <div className={style.content_list}>
-      <h1 className={style.title}>Знание сила</h1>
-      <div className={style.specification}>Описание игры</div>
-      <Button btnText="Начать" handleClick={handleGameStart} />
+    <div className={style.start_list}>
+      <div className={style.content_list}>
+        <div className={style.triangle_top}>
+          <h1 className={style.title1}>ЗНАНИЕ</h1>
+          <h1 className={style.title2}>СИЛА</h1>
+        </div>
+        <div className={style.specification}>
+          Преодолейте путь до самой вершины и одержите победу в невероятно увлекательной викторине.
+          Отвечайте на многообразные вопросы по разным темам, в то время как испытания на реакцию
+          будут постоянно держать в напряжении. От игрока потребуется скорость и точность.
+        </div>
+        <ButtonStart btnText="НАЧАТЬ" handleClick={handleGameStart} />
+      </div>
     </div>
   ) : (
     <Game />
