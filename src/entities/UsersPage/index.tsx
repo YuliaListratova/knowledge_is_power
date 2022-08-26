@@ -6,11 +6,18 @@ import UsersPageComponent from './components/UsersPageComponent';
 const UsersPage = () => {
   const [usersData, setUsersData] = useState<IUsers | null>(null);
 
+  const getData = async (url: string) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setUsersData(data);
+  };
+
   useEffect(() => {
     setTimeout(() => {
-      fetch(usersUrl)
-        .then((response) => response.json())
-        .then((data) => setUsersData(data));
+      getData(usersUrl);
+      // fetch(usersUrl)
+      //   .then((response) => response.json())
+      //   .then((data) => setUsersData(data));
     }, 1500);
   }, []);
 

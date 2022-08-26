@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { IUsersData } from '../../../interface/IUsers';
+import UserCard from './UserCard';
 
 interface IProps {
   usersDataAttr: IUsersData[];
@@ -15,10 +16,9 @@ const UsersPageComponent: FC<IProps> = ({ usersDataAttr }) => {
         {usersDataAttr.length ? (
           usersDataAttr.map((quest) => {
             return (
-              <div key={`QuestId:${quest.question}`}>
-                <p>{quest.question}</p>
-                <div>{quest.answers}</div>
-              </div>
+              <React.Fragment key={`QuestId:${quest.question}`}>
+                <UserCard quest={quest} />
+              </React.Fragment>
             );
           })
         ) : (
