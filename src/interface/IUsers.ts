@@ -1,10 +1,11 @@
-export interface IUsers {
-  qType: number;
-  count: number;
-  ok: boolean;
-  data: string;
-  info: string;
+export interface IUsersData {
   question: string;
-  answers: string;
-  id: number;
+  answers: [string, string, string, string];
+  id: 0;
+}
+
+export interface IUsers {
+  ok: boolean;
+  data: Array<IUsersData>;
+  amount: -1;
 }
