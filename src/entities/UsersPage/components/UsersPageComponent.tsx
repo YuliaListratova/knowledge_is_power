@@ -11,20 +11,17 @@ const UsersPageComponent: FC<IProps> = ({ usersDataAttr }) => {
 
   return (
     <div>
-      <p>Список</p>
-      <div>
-        {usersDataAttr.length ? (
-          usersDataAttr.map((quest) => {
-            return (
-              <React.Fragment key={`QuestId:${quest.question}`}>
-                <UserCard quest={quest} />
-              </React.Fragment>
-            );
-          })
-        ) : (
-          <div>У матросов нет вопросов</div>
-        )}
-      </div>
+      {usersDataAttr.length ? (
+        usersDataAttr.map((quest) => {
+          return (
+            <React.Fragment key={`QuestId:${quest.question}`}>
+              <UserCard quest={quest} />
+            </React.Fragment>
+          );
+        })
+      ) : (
+        <div>У матросов нет вопросов</div>
+      )}
     </div>
   );
 };

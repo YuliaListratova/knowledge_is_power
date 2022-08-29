@@ -15,9 +15,6 @@ const UsersPage = () => {
   useEffect(() => {
     setTimeout(() => {
       getData(usersUrl);
-      // fetch(usersUrl)
-      //   .then((response) => response.json())
-      //   .then((data) => setUsersData(data));
     }, 1500);
   }, []);
 
