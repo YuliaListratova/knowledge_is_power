@@ -30,16 +30,16 @@ const QuestionPage = () => {
       </div>
       <div className={style.all_answer}>
         <button className={style.button_answer} type="button">
-          <Answer quest={usersData.data[0]} />
+          <Answer quest={usersData.data[0]} answer={0} />
         </button>
         <button className={style.button_answer} type="button">
-          <Answer quest={usersData.data[0]} />
+          <Answer quest={usersData.data[0]} answer={1} />
         </button>
         <button className={style.button_answer} type="button">
-          <Answer quest={usersData.data[0]} />
+          <Answer quest={usersData.data[0]} answer={2} />
         </button>
         <button className={style.button_answer} type="button">
-          <Answer quest={usersData.data[0]} />
+          <Answer quest={usersData.data[0]} answer={3} />
         </button>
       </div>
     </div>
