@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
+import { IUsersData } from '../../interface/IUsers';
 
 interface IAnswer {
-  answerText: string;
+  quest: IUsersData;
 }
 
-const Answer: FC<IAnswer> = (props) => {
-  const { answerText } = props;
-  return <>{answerText}</>;
+const Answer: FC<IAnswer> = ({ quest }) => {
+  return <div>{quest.answers[0]}</div>;
 };
 
 export default Answer;

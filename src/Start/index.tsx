@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import Button from '../Button/import';
-import Game from '../Game';
+import QuestionPage from '../Game/index.';
+
 import ButtonStart from './component/ButtonStart';
 import style from './Start.module.scss';
 
 const Start = () => {
   const [isStartGame, setIsStartGame] = useState(false);
   const handleGameStart = () => {
-    console.log('Game');
     setIsStartGame(true);
   };
 
@@ -27,7 +27,7 @@ const Start = () => {
       </div>
     </div>
   ) : (
-    <Game />
+    <QuestionPage />
   );
 };
 
