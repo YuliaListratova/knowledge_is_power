@@ -22,7 +22,7 @@ const QuestionPage = () => {
   }, []);
 
   return !usersData ? (
-    <div>Загрузка...</div>
+    <div className={style.loading}>Загрузка...</div>
   ) : (
     <div className={style.content}>
       <div className={style.question}>

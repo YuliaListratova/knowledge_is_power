@@ -5,6 +5,13 @@
   flex-direction: column;
   height: 100vh;
 }
+.loading {
+  background-color: #87b074;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
 .question {
   display: flex;
   justify-content: center;
