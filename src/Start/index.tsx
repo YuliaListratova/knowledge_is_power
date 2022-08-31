@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Button from '../Button/import';
 import QuestionPage from '../Game/index.';
 
 import ButtonStart from './component/ButtonStart';
