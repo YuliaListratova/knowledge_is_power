@@ -1,10 +1,11 @@
 import React from 'react';
+import style from './Tricks.module.scss';
 
 const MixLetters = () => {
   return (
-    <div>
-      <h1>Буквомешалка</h1>
-      <p>Чтобы найти правильный ответ, верни буквы в исходное положение.</p>
+    <div className={style.page_mix_letters}>
+      <h1 className={style.title_mix_letters}>Буквомешалка</h1>
+      <p className={style.text}>Чтобы найти правильный ответ, верни буквы в исходное положение.</p>
     </div>
   );
 };

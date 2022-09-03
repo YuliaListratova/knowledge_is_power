@@ -7,6 +7,7 @@ import Answer from './component/Answer';
 import style from './Game.module.scss';
 import CountdownTimer from './component/CountdownTimer';
 import { useNavigate } from 'react-router-dom';
+import Loading from './component/ClipLoader';
 
 const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
   const shuffledArray = [...array];
@@ -53,7 +54,9 @@ const QuestionPage = () => {
   const currentData = usersData?.data[currentQuestion] as IUsersData;
 
   return !usersData ? (
-    <div className={style.loading}>Загрузка...</div>
+    <div className={style.loading}>
+      <Loading />
+    </div>
   ) : (
     <div className={style.content}>
       <div className={style.timer_question}>

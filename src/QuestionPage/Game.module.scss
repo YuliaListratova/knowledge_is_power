@@ -4,11 +4,15 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: 100vmax;
 }
 .loading {
+  height: 100vh;
+  width: 100vmax;
   background-color: #87b074;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   height: 100vh;
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Game from '../QuestionPage/index.';
+import QuestionPage from '../QuestionPage/index.';
+
 import ButtonStart from './component/ButtonStart';
 import style from './Start.module.scss';
 
@@ -35,7 +37,7 @@ const Start = () => {
       </div>
     </div>
   ) : (
-    <Game />
+    <QuestionPage />
   );
 };
 
