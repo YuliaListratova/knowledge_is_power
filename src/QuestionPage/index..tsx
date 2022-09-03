@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usersUrl } from '../api/constats';
 import Question from './component/Question';
 
@@ -6,7 +6,7 @@ import { IUsers, IUsersData } from '../interface/IUsers';
 import Answer from './component/Answer';
 import style from './Game.module.scss';
 import CountdownTimer from './component/CountdownTimer';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
   const shuffledArray = [...array];
@@ -17,8 +17,13 @@ const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
   return shuffledArray;
 };
 
+const arrayTricks = ['/freezing', '/mix_letters', '/time-leak'];
+const numberTricks = Math.floor(Math.random() * arrayTricks.length);
+const myTrick = arrayTricks[numberTricks];
+
 const QuestionPage = () => {
   const [usersData, setUsersData] = useState<IUsers | null>(null);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const navigate = useNavigate();
@@ -41,7 +46,7 @@ const QuestionPage = () => {
     if (isTrueAnswer) {
       setCurrentQuestion((lastQuestion) => lastQuestion + 1);
     } else {
-      navigate('/end');
+      navigate(myTrick);
     }
   };
 
