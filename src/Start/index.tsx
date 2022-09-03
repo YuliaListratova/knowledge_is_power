@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import QuestionPage from '../QuestionPage/index.';
 

@@ -61,7 +61,7 @@ const QuestionPage = () => {
     <div className={style.content}>
       <div className={style.timer_question}>
         <div className={style.timer}>
-          <CountdownTimer hours={0} minutes={1} seconds={0} />
+          <CountdownTimer hours={0} minutes={0} seconds={5} />
         </div>
 
         <div className={style.question}>
