@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import QuestionPage from '../Game/index.';
 
 import ButtonStart from './component/ButtonStart';
@@ -6,6 +8,15 @@ import style from './Start.module.scss';
 
 const Start = () => {
   const [isStartGame, setIsStartGame] = useState(false);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      navigate('knowledge_is_power');
+    }
+  }, [pathname, navigate]);
+
   const handleGameStart = () => {
     setIsStartGame(true);
   };

@@ -6,6 +6,7 @@ import { IUsers, IUsersData } from '../interface/IUsers';
 import Answer from './component/Answer';
 import style from './Game.module.scss';
 import CountdownTimer from './component/CountdownTimer';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
   const shuffledArray = [...array];
@@ -19,6 +20,8 @@ const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
 const QuestionPage = () => {
   const [usersData, setUsersData] = useState<IUsers | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const navigate = useNavigate();
 
   const getData = async (url: string) => {
     const response = await fetch(url);
@@ -37,6 +40,8 @@ const QuestionPage = () => {
   const handleSelectAnswer = (isTrueAnswer: boolean): void => {
     if (isTrueAnswer) {
       setCurrentQuestion((lastQuestion) => lastQuestion + 1);
+    } else {
+      navigate('/end');
     }
   };
 
@@ -48,7 +53,7 @@ const QuestionPage = () => {
     <div className={style.content}>
       <div className={style.timer_question}>
         <div className={style.timer}>
-          <CountdownTimer hours={0} minutes={0} seconds={10} />
+          <CountdownTimer hours={0} minutes={1} seconds={0} />
         </div>
 
         <div className={style.question}>
