@@ -12,7 +12,7 @@ const Start = () => {
 
   useEffect(() => {
     if (pathname === '/') {
-      navigate('knowledge_is_power');
+      navigate('/knowledge_is_power');
     }
   }, [pathname, navigate]);
 

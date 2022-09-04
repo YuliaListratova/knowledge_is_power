@@ -11,8 +11,8 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Start />} />
-      <Route path="knowledge_is_power" element={<Start />} />
-      <Route path="knowledge_is_power/:questionId" element={<QuestionPage />} />
+      <Route path="/knowledge_is_power" element={<Start />} />
+      <Route path="/knowledge_is_power/:questionId" element={<QuestionPage />} />
       <Route path="/freezing" element={<Freezing />} />
       <Route path="/mix_letters" element={<MixLetters />} />
       <Route path="/time-leak" element={<TimeLeak />} />

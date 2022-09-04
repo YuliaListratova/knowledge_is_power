@@ -6,7 +6,7 @@ const Loading = () => {
 
   return (
     <div className="sweet-loading">
-      <GridLoader color={'#DEB962'} loading={loading} size={40} />
+      <GridLoader color={'#DEB962'} loading={loading} size={30} />
     </div>
   );
 };
