@@ -8,6 +8,7 @@ import style from './Game.module.scss';
 import CountdownTimer from './component/CountdownTimer';
 import { useNavigate } from 'react-router-dom';
 import Loading from './component/ClipLoader';
+import { $api } from '../api/axios-instance';
 
 const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
   const shuffledArray = [...array];
@@ -38,6 +39,7 @@ const QuestionPage = () => {
   useEffect(() => {
     setTimeout(() => {
       getData(usersUrl);
+      // getData($api);
     }, 1000);
   }, []);
 
