@@ -73,14 +73,14 @@
     background-color: #87e9e1;
   }
 }
-.error {
+.block_error_answer {
   position: fixed;
-  right: 5px;
-  top: 80%;
-  width: 347px;
-  height: 160px;
+  top: 53%;
+  left: 38%;
   display: block;
   z-index: 99999999;
+  color: rgb(184, 19, 19);
+  margin: 0;
 }
 .exit {
   margin: 50px;

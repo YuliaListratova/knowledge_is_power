@@ -9,15 +9,11 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import Question from './component/Question';
 import Answer from './component/Answer';
 import ButtonStart from '../../ButtonStart/ButtonStart';
-
-const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
-  const shuffledArray = [...array];
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-  }
-  return shuffledArray;
-};
+import { PrevioslyQuestionActionTypes } from '../../store/PrevioslyQuestion/interfaces';
+import { Answers } from './component/Answers';
+import MixLetters from '../Tricks/MixLetters';
+import { QuestionCounterActionTypes } from '../../store/QuestionCounter/interfaces';
+import { ShouldShuffleActionTypes } from '../../store/ShouldShuffle/interfaces';
 
 const arrayTricks = ['/freezing', '/mix_letters', '/time-leak'];
 const numberTricks = Math.floor(Math.random() * arrayTricks.length);
@@ -25,30 +21,50 @@ const myTrick = arrayTricks[numberTricks];
 
 const QuestionPage = () => {
   // const [usersData, setUsersData] = useState<IUsers | null>(null);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  // const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isError, setIsError] = useState(false);
 
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
 
+  const { isLoading, error, data } = useAppSelector((store) => store.questions);
+
   useEffect(() => {
-    dispatch(fetchQuestions({ qType: 1, count: 5 }));
+    if (!data && !isLoading) {
+      console.log('isLoading', isLoading);
+      dispatch(fetchQuestions({ qType: 1, count: 5 }));
+    }
     if (!search) {
       navigate('/questions_page');
     }
-  }, [dispatch, navigate, search]);
+  }, [data, dispatch, isLoading, navigate, search]);
 
-  const { isLoading, error, data } = useAppSelector((store) => store.questions);
+  const isPrevioslyQuestionFail = useAppSelector((store) => store.isPrevioslyQuestionFail);
 
-  const [answer1, answer2, answer3, answer4] = shuffle([0, 1, 2, 3]);
+  const currentQuestion = useAppSelector((store) => store.questionCounter);
+
+  const shouldShuffle = useAppSelector((store) => store.shouldShuffle);
+
+  const handleNewGameStart = () => {
+    dispatch({ type: QuestionCounterActionTypes.START_NEW_GAME });
+    navigate('/knowledge_is_power');
+  };
 
   const handleSelectAnswer = (isTrueAnswer: boolean): void => {
     if (isTrueAnswer) {
-      setCurrentQuestion((lastQuestion) => lastQuestion + 1);
+      // setCurrentQuestion((lastQuestion) => lastQuestion + 1);
+      dispatch({ type: QuestionCounterActionTypes.SET_NEXT_QUESTION });
+      if (isPrevioslyQuestionFail) {
+        navigate('/mix_letters');
+      }
+      if (shouldShuffle) {
+        dispatch({ type: ShouldShuffleActionTypes.SET_IS_SHOULD_SHUFFLE_FALSE });
+      }
     } else {
       setIsError(true);
       setTimeout(() => setIsError(false), 1000);
+      dispatch({ type: PrevioslyQuestionActionTypes.PREVIOSLY_QUESTION_FAIL });
       // navigate(myTrick);
     }
   };
@@ -77,12 +93,6 @@ const QuestionPage = () => {
     return null;
   }
 
-  // const navigate = useNavigate();
-
-  const handleNewGameStart = () => {
-    navigate('/knowledge_is_power');
-  };
-
   return (
     <>
       <div className={style.content}>
@@ -95,26 +105,16 @@ const QuestionPage = () => {
             <Question quest={currentData} />
           </div>
         </div>
-        <div className={style.all_answer}>
-          <button className={style.button_answer} type="button">
-            <Answer quest={currentData} answer={answer1} onClick={handleSelectAnswer} />
-          </button>
-          <button className={style.button_answer} type="button">
-            <Answer quest={currentData} answer={answer2} onClick={handleSelectAnswer} />
-          </button>
-          <button className={style.button_answer} type="button">
-            <Answer quest={currentData} answer={answer3} onClick={handleSelectAnswer} />
-          </button>
-          <button className={style.button_answer} type="button">
-            <Answer quest={currentData} answer={answer4} onClick={handleSelectAnswer} />
-          </button>
-        </div>
+        <Answers selectAnswer={handleSelectAnswer} currentData={currentData} />
         <div className={style.exit}>
           <ButtonStart btnText="Выход" handleClick={handleNewGameStart} />
         </div>
       </div>
-
-      {isError && <div className={style.error}>ОШИБКА</div>}
+      {isError && (
+        // <div className={style.block_error_answer}>
+        <h2 className={style.block_error_answer}>НЕПРАВИЛЬНЫЙ ОТВЕТ</h2>
+        // </div>
+      )}
     </>
   );
 };
