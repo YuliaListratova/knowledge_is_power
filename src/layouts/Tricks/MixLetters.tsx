@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { PrevioslyQuestionActionTypes } from '../../store/PrevioslyQuestion/interfaces';
 import { ShouldShuffleActionTypes } from '../../store/ShouldShuffle/interfaces';
-import { Answers } from '../QuestionPage/component/Answers';
 import style from './Tricks.module.scss';
 
 const MixLetters = () => {

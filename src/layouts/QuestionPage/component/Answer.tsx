@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import style from '../Game.module.scss';
 import { IUsersData } from '../../../store/pages/QuestionsPage/interfaces';
 // import { IUsersData } from '../../../interface/IUsers';
 
@@ -11,7 +12,11 @@ interface IAnswer {
 const Answer: FC<IAnswer> = ({ quest, answer, onClick }) => {
   const handleOnClick = () => onClick(answer === 0);
 
-  return <div onClick={handleOnClick}>{quest.answers[answer]}</div>;
+  return (
+    <button onClick={handleOnClick} className={style.button_answer} type="button">
+      <div>{quest.answers[answer]}</div>
+    </button>
+  );
 };
 
 export default Answer;

@@ -9,23 +9,13 @@ interface IAnswersProps {
 }
 
 export const Answers = ({ currentData, selectAnswer }: IAnswersProps) => {
-  const [answer1, answer2, answer3, answer4] = shuffle([0, 1, 2, 3]);
+  const answers = shuffle([0, 1, 2, 3]) as Array<0 | 1 | 2 | 3>;
   const handleSelectAnswer = (isTrueAnswer: boolean) => selectAnswer(isTrueAnswer);
   return (
     <div className={style.all_answer}>
-      <button className={style.button_answer} type="button">
-        <Answer quest={currentData} answer={answer1} onClick={handleSelectAnswer} />
-      </button>
-      <button className={style.button_answer} type="button">
-        <Answer quest={currentData} answer={answer2} onClick={handleSelectAnswer} />
-      </button>
-
-      <button className={style.button_answer} type="button">
-        <Answer quest={currentData} answer={answer3} onClick={handleSelectAnswer} />
-      </button>
-      <button className={style.button_answer} type="button">
-        <Answer quest={currentData} answer={answer4} onClick={handleSelectAnswer} />
-      </button>
+      {answers.map((answer) => (
+        <Answer quest={currentData} answer={answer} onClick={handleSelectAnswer} />
+      ))}
     </div>
   );
 };

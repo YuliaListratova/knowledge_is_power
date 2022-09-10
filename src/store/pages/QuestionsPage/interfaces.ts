@@ -28,9 +28,11 @@ export enum QuestionsActionTypes {
 //   title: string;
 //   completed: boolean;
 // }
+export type IAnswers = [string, string, string, string];
+
 export interface IUsersData {
   question: string;
-  answers: [string, string, string, string];
+  answers: IAnswers;
   id: 0;
 }
 

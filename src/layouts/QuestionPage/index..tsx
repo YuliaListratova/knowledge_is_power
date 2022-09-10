@@ -7,21 +7,18 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { fetchQuestions } from '../../store/pages/QuestionsPage/async-actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import Question from './component/Question';
-import Answer from './component/Answer';
 import ButtonStart from '../../ButtonStart/ButtonStart';
 import { PrevioslyQuestionActionTypes } from '../../store/PrevioslyQuestion/interfaces';
 import { Answers } from './component/Answers';
-import MixLetters from '../Tricks/MixLetters';
 import { QuestionCounterActionTypes } from '../../store/QuestionCounter/interfaces';
 import { ShouldShuffleActionTypes } from '../../store/ShouldShuffle/interfaces';
+import { getShuffleLettersInAnswers } from '../../utils';
 
 const arrayTricks = ['/freezing', '/mix_letters', '/time-leak'];
 const numberTricks = Math.floor(Math.random() * arrayTricks.length);
 const myTrick = arrayTricks[numberTricks];
 
 const QuestionPage = () => {
-  // const [usersData, setUsersData] = useState<IUsers | null>(null);
-  // const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isError, setIsError] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -30,10 +27,12 @@ const QuestionPage = () => {
 
   const { isLoading, error, data } = useAppSelector((store) => store.questions);
 
+  const count = 5;
+
   useEffect(() => {
     if (!data && !isLoading) {
       console.log('isLoading', isLoading);
-      dispatch(fetchQuestions({ qType: 1, count: 5 }));
+      dispatch(fetchQuestions({ qType: 1, count }));
     }
     if (!search) {
       navigate('/questions_page');
@@ -53,9 +52,8 @@ const QuestionPage = () => {
 
   const handleSelectAnswer = (isTrueAnswer: boolean): void => {
     if (isTrueAnswer) {
-      // setCurrentQuestion((lastQuestion) => lastQuestion + 1);
       dispatch({ type: QuestionCounterActionTypes.SET_NEXT_QUESTION });
-      if (isPrevioslyQuestionFail) {
+      if (isPrevioslyQuestionFail && count !== currentQuestion + 1) {
         navigate('/mix_letters');
       }
       if (shouldShuffle) {
@@ -88,6 +86,8 @@ const QuestionPage = () => {
   const currentData = data.data[currentQuestion];
   console.log('currentData', currentData);
 
+  const resultData = shouldShuffle ? getShuffleLettersInAnswers(currentData) : currentData;
+
   if (questionCount === 0) {
     navigate('/win');
     return null;
@@ -102,10 +102,10 @@ const QuestionPage = () => {
           </div>
 
           <div className={style.question}>
-            <Question quest={currentData} />
+            <Question quest={resultData} />
           </div>
         </div>
-        <Answers selectAnswer={handleSelectAnswer} currentData={currentData} />
+        <Answers selectAnswer={handleSelectAnswer} currentData={resultData} />
         <div className={style.exit}>
           <ButtonStart btnText="Выход" handleClick={handleNewGameStart} />
         </div>
