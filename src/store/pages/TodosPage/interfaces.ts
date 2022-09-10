@@ -3,9 +3,15 @@
 //   loading: boolean;
 //   error: string | null;
 // }
+export interface IData {
+  amount: -1;
+  ok: boolean;
+  data: Array<IUsersData>;
+}
+
 export interface IUsers {
   isLoading: boolean;
-  data: Array<IUsersData>;
+  data: IData | null;
   // amount: -1;
   error: boolean | null;
 }
@@ -34,7 +40,7 @@ export interface IFetchQuestionsAction {
 
 export interface IFetchQuestionsSuccessAction {
   type: QuestionsActionTypes.FETCH_QUESTIONS_SUCCESS;
-  payload: Array<IUsersData>;
+  payload: IData;
 }
 
 export interface IFetchQuestionsFailureAction {

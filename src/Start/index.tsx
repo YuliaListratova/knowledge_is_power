@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import QuestionsPage from '../TodosPage';
+import QuestionPage from '../layouts/QuestionPage/index.';
+// import QuestionsPage from '../TodosPage';
 // import QuestionPage from '../QuestionPage/index.';
 
 import ButtonStart from './component/ButtonStart';
@@ -37,7 +38,7 @@ const Start = () => {
       </div>
     </div>
   ) : (
-    <QuestionsPage />
+    <QuestionPage />
   );
 };
 
