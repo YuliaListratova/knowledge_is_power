@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import End from './End';
+import End from './layouts/End';
 import QuestionPage from './layouts/QuestionPage/index.';
 import Win from './layouts/Win';
-// import QuestionPage from './QuestionPage/index.';
-import Start from './Start';
-// import QuestionsPage from './TodosPage';
-import Freezing from './Tricks/Freezing';
-import MixLetters from './Tricks/MixLetters';
-import TimeLeak from './Tricks/TimeLeak';
+import Start from './layouts/Start';
+import Freezing from './layouts/Tricks/Freezing';
+import MixLetters from './layouts/Tricks/MixLetters';
+import TimeLeak from './layouts/Tricks/TimeLeak';
 
 const App = () => {
   return (
@@ -21,7 +19,6 @@ const App = () => {
       <Route path="/time-leak" element={<TimeLeak />} />
       <Route path="/end" element={<End />} />
       <Route path="/win" element={<Win />} />
-      {/* <Route path="/questions_page" element={<QuestionsPage />} /> */}
     </Routes>
   );
 };

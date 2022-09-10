@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import QuestionPage from '../layouts/QuestionPage/index.';
+import QuestionPage from '../QuestionPage/index.';
 // import QuestionsPage from '../TodosPage';
 // import QuestionPage from '../QuestionPage/index.';
 
-import ButtonStart from './component/ButtonStart';
+import ButtonStart from '../../ButtonStart/ButtonStart';
 import style from './Start.module.scss';
 
 const Start = () => {

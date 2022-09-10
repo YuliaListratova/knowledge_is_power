@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ButtonStart from '../../Start/component/ButtonStart';
+import ButtonStart from '../../ButtonStart/ButtonStart';
 
 import style from './Win.module.scss';
 

@@ -4,10 +4,11 @@ import CountdownTimer from './component/CountdownTimer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from './component/ClipLoader';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { fetchQuestions } from '../../store/pages/TodosPage/async-actions';
+import { fetchQuestions } from '../../store/pages/QuestionsPage/async-actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import Question from './component/Question';
 import Answer from './component/Answer';
+import ButtonStart from '../../ButtonStart/ButtonStart';
 
 const shuffle = (array: Array<0 | 1 | 2 | 3>): Array<0 | 1 | 2 | 3> => {
   const shuffledArray = [...array];
@@ -25,6 +26,8 @@ const myTrick = arrayTricks[numberTricks];
 const QuestionPage = () => {
   // const [usersData, setUsersData] = useState<IUsers | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [isError, setIsError] = useState(false);
+
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
@@ -44,7 +47,9 @@ const QuestionPage = () => {
     if (isTrueAnswer) {
       setCurrentQuestion((lastQuestion) => lastQuestion + 1);
     } else {
-      navigate(myTrick);
+      setIsError(true);
+      setTimeout(() => setIsError(false), 1000);
+      // navigate(myTrick);
     }
   };
 
@@ -72,32 +77,45 @@ const QuestionPage = () => {
     return null;
   }
 
-  return (
-    <div className={style.content}>
-      <div className={style.timer_question}>
-        <div className={style.timer}>
-          <CountdownTimer hours={0} minutes={1} seconds={0} />
-        </div>
+  // const navigate = useNavigate();
 
-        <div className={style.question}>
-          <Question quest={currentData} />
+  const handleNewGameStart = () => {
+    navigate('/knowledge_is_power');
+  };
+
+  return (
+    <>
+      <div className={style.content}>
+        <div className={style.timer_question}>
+          <div className={style.timer}>
+            <CountdownTimer hours={1} minutes={1} seconds={0} />
+          </div>
+
+          <div className={style.question}>
+            <Question quest={currentData} />
+          </div>
+        </div>
+        <div className={style.all_answer}>
+          <button className={style.button_answer} type="button">
+            <Answer quest={currentData} answer={answer1} onClick={handleSelectAnswer} />
+          </button>
+          <button className={style.button_answer} type="button">
+            <Answer quest={currentData} answer={answer2} onClick={handleSelectAnswer} />
+          </button>
+          <button className={style.button_answer} type="button">
+            <Answer quest={currentData} answer={answer3} onClick={handleSelectAnswer} />
+          </button>
+          <button className={style.button_answer} type="button">
+            <Answer quest={currentData} answer={answer4} onClick={handleSelectAnswer} />
+          </button>
+        </div>
+        <div className={style.exit}>
+          <ButtonStart btnText="Выход" handleClick={handleNewGameStart} />
         </div>
       </div>
-      <div className={style.all_answer}>
-        <button className={style.button_answer} type="button">
-          <Answer quest={currentData} answer={answer1} onClick={handleSelectAnswer} />
-        </button>
-        <button className={style.button_answer} type="button">
-          <Answer quest={currentData} answer={answer2} onClick={handleSelectAnswer} />
-        </button>
-        <button className={style.button_answer} type="button">
-          <Answer quest={currentData} answer={answer3} onClick={handleSelectAnswer} />
-        </button>
-        <button className={style.button_answer} type="button">
-          <Answer quest={currentData} answer={answer4} onClick={handleSelectAnswer} />
-        </button>
-      </div>
-    </div>
+
+      {isError && <div className={style.error}>ОШИБКА</div>}
+    </>
   );
 };
 

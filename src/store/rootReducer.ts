@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import { QuestionsReducer } from './pages/TodosPage/reducer';
+import { QuestionsReducer } from './pages/QuestionsPage/reducer';
 
 const reducers = {
   questions: QuestionsReducer,

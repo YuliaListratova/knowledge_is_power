@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IUsersData } from '../../../store/pages/TodosPage/interfaces';
+import { IUsersData } from '../../../store/pages/QuestionsPage/interfaces';
 // import { IUsersData } from '../../../interface/IUsers';
 
 interface IAnswer {
