@@ -14,7 +14,7 @@ export const Answers = ({ currentData, selectAnswer }: IAnswersProps) => {
   return (
     <div className={style.all_answer}>
       {answers.map((answer) => (
-        <Answer quest={currentData} answer={answer} onClick={handleSelectAnswer} />
+        <Answer key={answer} quest={currentData} answer={answer} onClick={handleSelectAnswer} />
       ))}
     </div>
   );

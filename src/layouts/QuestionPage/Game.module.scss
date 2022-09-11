@@ -18,7 +18,7 @@
 }
 .timer_question {
   width: 900px;
-  height: 300px;
+  height: 270px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,9 +40,9 @@
   color: #fff;
   font-size: 36px;
   font-weight: 700;
-
   max-width: 700px;
   text-align: center;
+  width: 700px;
 }
 .all_answer {
   display: flex;
@@ -75,9 +75,17 @@
 }
 .block_error_answer {
   position: fixed;
-  top: 53%;
-  left: 38%;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  // position: fixed;
+  // top: 53%;
+  // left: 38%;
+  // display: block;
   z-index: 99999999;
   color: rgb(184, 19, 19);
   margin: 0;

@@ -1,22 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import QuestionPage from '../QuestionPage/index.';
-// import QuestionsPage from '../TodosPage';
-// import QuestionPage from '../QuestionPage/index.';
 
 import ButtonStart from '../../ButtonStart/ButtonStart';
 import style from './Start.module.scss';
+import Level from '../Level';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { PrevioslyQuestionActionTypes } from '../../store/PrevioslyQuestion/interfaces';
+import { QuestionCounterActionTypes } from '../../store/QuestionCounter/interfaces';
+import { ShouldShuffleActionTypes } from '../../store/ShouldShuffle/interfaces';
 
 const Start = () => {
   const [isStartGame, setIsStartGame] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (pathname === '/') {
       navigate('/knowledge_is_power');
     }
   }, [pathname, navigate]);
+
+  useEffect(() => {
+    dispatch({ type: QuestionCounterActionTypes.START_NEW_GAME });
+    dispatch({ type: PrevioslyQuestionActionTypes.PREVIOSLY_QUESTION_TRUE });
+    dispatch({ type: ShouldShuffleActionTypes.SET_IS_SHOULD_SHUFFLE_FALSE });
+  }, [dispatch]);
 
   const handleGameStart = () => {
     setIsStartGame(true);
@@ -38,7 +47,7 @@ const Start = () => {
       </div>
     </div>
   ) : (
-    <QuestionPage />
+    <Level />
   );
 };
 

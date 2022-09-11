@@ -4,7 +4,6 @@ import CountdownTimer from './component/CountdownTimer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from './component/ClipLoader';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { fetchQuestions } from '../../store/pages/QuestionsPage/async-actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import Question from './component/Question';
 import ButtonStart from '../../ButtonStart/ButtonStart';
@@ -13,40 +12,30 @@ import { Answers } from './component/Answers';
 import { QuestionCounterActionTypes } from '../../store/QuestionCounter/interfaces';
 import { ShouldShuffleActionTypes } from '../../store/ShouldShuffle/interfaces';
 import { getShuffleLettersInAnswers } from '../../utils';
+import { count } from '../../constants/constants';
 
-const arrayTricks = ['/freezing', '/mix_letters', '/time-leak'];
-const numberTricks = Math.floor(Math.random() * arrayTricks.length);
-const myTrick = arrayTricks[numberTricks];
+// const arrayTricks = ['/freezing', '/mix_letters', '/time-leak'];
+// const numberTricks = Math.floor(Math.random() * arrayTricks.length);
+// const myTrick = arrayTricks[numberTricks];
 
 const QuestionPage = () => {
   const [isError, setIsError] = useState(false);
-
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
 
   const { isLoading, error, data } = useAppSelector((store) => store.questions);
 
-  const count = 5;
-
   useEffect(() => {
-    if (!data && !isLoading) {
-      console.log('isLoading', isLoading);
-      dispatch(fetchQuestions({ qType: 1, count }));
-    }
     if (!search) {
       navigate('/questions_page');
     }
   }, [data, dispatch, isLoading, navigate, search]);
 
   const isPrevioslyQuestionFail = useAppSelector((store) => store.isPrevioslyQuestionFail);
-
   const currentQuestion = useAppSelector((store) => store.questionCounter);
-
   const shouldShuffle = useAppSelector((store) => store.shouldShuffle);
-
   const handleNewGameStart = () => {
-    dispatch({ type: QuestionCounterActionTypes.START_NEW_GAME });
     navigate('/knowledge_is_power');
   };
 
@@ -80,12 +69,7 @@ const QuestionPage = () => {
   }
 
   const questionCount = data.data.length - currentQuestion;
-
-  console.log('questionCount', questionCount);
-
   const currentData = data.data[currentQuestion];
-  console.log('currentData', currentData);
-
   const resultData = shouldShuffle ? getShuffleLettersInAnswers(currentData) : currentData;
 
   if (questionCount === 0) {
@@ -98,23 +82,18 @@ const QuestionPage = () => {
       <div className={style.content}>
         <div className={style.timer_question}>
           <div className={style.timer}>
-            <CountdownTimer hours={1} minutes={1} seconds={0} />
+            <CountdownTimer hours={0} minutes={1} seconds={0} />
           </div>
-
           <div className={style.question}>
             <Question quest={resultData} />
           </div>
         </div>
+        {isError && <h2 className={style.block_error_answer}>ПОПРОБУЙТЕ ЕЩЁ РАЗ</h2>}
         <Answers selectAnswer={handleSelectAnswer} currentData={resultData} />
         <div className={style.exit}>
           <ButtonStart btnText="Выход" handleClick={handleNewGameStart} />
         </div>
       </div>
-      {isError && (
-        // <div className={style.block_error_answer}>
-        <h2 className={style.block_error_answer}>НЕПРАВИЛЬНЫЙ ОТВЕТ</h2>
-        // </div>
-      )}
     </>
   );
 };
