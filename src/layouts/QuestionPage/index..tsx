@@ -14,10 +14,6 @@ import { ShouldShuffleActionTypes } from '../../store/ShouldShuffle/interfaces';
 import { getShuffleLettersInAnswers } from '../../utils';
 import { count } from '../../constants/constants';
 
-// const arrayTricks = ['/freezing', '/mix_letters', '/time-leak'];
-// const numberTricks = Math.floor(Math.random() * arrayTricks.length);
-// const myTrick = arrayTricks[numberTricks];
-
 const QuestionPage = () => {
   const [isError, setIsError] = useState(false);
   const dispatch = useAppDispatch();
@@ -52,7 +48,6 @@ const QuestionPage = () => {
       setIsError(true);
       setTimeout(() => setIsError(false), 1000);
       dispatch({ type: PrevioslyQuestionActionTypes.PREVIOSLY_QUESTION_FAIL });
-      // navigate(myTrick);
     }
   };
 

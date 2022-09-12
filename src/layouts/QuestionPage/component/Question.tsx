@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { IUsersData } from '../../../store/pages/QuestionsPage/interfaces';
-// import { IUsersData } from '../../../interface/IUsers';
 
 interface IQuestion {
   quest: IUsersData;

@@ -1,8 +1,3 @@
-// export interface ITodosState {
-//   todosData: ITodo[];
-//   loading: boolean;
-//   error: string | null;
-// }
 export interface IData {
   amount: -1;
   ok: boolean;
@@ -12,7 +7,6 @@ export interface IData {
 export interface IUsers {
   isLoading: boolean;
   data: IData | null;
-  // amount: -1;
   error: boolean | null;
 }
 
@@ -22,12 +16,6 @@ export enum QuestionsActionTypes {
   FETCH_QUESTIONS_FAILURE = 'FETCH_QUESTIONS_FAILURE',
 }
 
-// export interface ITodo {
-//   userId: number;
-//   id: number;
-//   title: string;
-//   completed: boolean;
-// }
 export type IAnswers = [string, string, string, string];
 
 export interface IUsersData {

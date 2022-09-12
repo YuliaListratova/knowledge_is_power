@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import style from '../Game.module.scss';
 import { IUsersData } from '../../../store/pages/QuestionsPage/interfaces';
-// import { IUsersData } from '../../../interface/IUsers';
 
 interface IAnswer {
   quest: IUsersData;

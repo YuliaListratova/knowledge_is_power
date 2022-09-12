@@ -3,7 +3,6 @@ import { IFetchQuestionsActions, IUsers, QuestionsActionTypes } from './interfac
 const initialState: IUsers = {
   data: null,
   isLoading: false,
-  // amount: -1,
   error: null,
 };
 
